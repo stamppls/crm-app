@@ -1,0 +1,23 @@
+<div fxLayout="column wrap" fxFlex="1 0 auto">
+    <button mat-button *ngFor="let contact of model" (click)="openChat(contact)" class="contact-list">
+        <div fxLayout="column wrap">
+            <div fxLayoutAlign="end stretch" class="contact-message">yesterday</div>
+            <div fxLayout="row wrap" fxFlex="1 0 auto">
+                <div fxLayoutAlign="start center" fxFlex="25">
+                    <div mat-card-avatar class="avatar-header"
+                        style="background-image: url('{{contact.contactImage}}');"></div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="75">
+                    <div class="contact-name" fxLayoutAlign="start end">
+                        <strong>
+                            {{contact.contactName}}
+                        </strong>
+                    </div>
+                    <div class="contact-message" fxLayoutAlign="start end">
+                        {{contact.contactChats[0]?.message}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </button>
+</div>

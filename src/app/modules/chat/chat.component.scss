@@ -1,0 +1,128 @@
+.mat-drawer-container {
+    width: 100%;
+    min-height: calc(110vh - 175px);
+  
+    .left-panel {
+    //   padding: 10px;
+      width: 25%;
+    }
+  
+    .right-panel {
+      width: 25%;
+    }
+  
+    .content-panel {
+      overflow: auto;
+      max-height: 83.5vh;
+      width: auto;
+      background-color:  white;
+    }
+}
+  
+
+.contact-header{
+    padding-left: 10px;
+    // border-bottom: 1px solid rgb(228, 228, 228);
+    height: 50px;
+}
+
+.panel-right-header{
+    padding-left: 5px;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    height: 50px;
+}
+
+.avatar-header {
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+  
+    // Makes `<img>` tags behave like `background-size: cover`. Not supported
+    // in IE, but we're using it as a progressive enhancement.
+    object-fit: cover;
+}
+
+.image-no-message{
+    width: 100%;
+    height: 77.5vh;
+}
+
+.send-message{
+    border-top: 1px solid rgb(228, 228, 228);
+    height: 35px;
+    width: 100%;
+    font-size: 15px;
+}
+
+.input-message{
+    height: 100%;
+    width: 100%;
+}
+
+.panel-right-note{
+    padding-left: 5px;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    max-height: 400px;
+    height: auto;
+
+}
+
+.avatar-chat {
+    margin-left: 10px;
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+  
+    // Makes `<img>` tags behave like `background-size: cover`. Not supported
+    // in IE, but we're using it as a progressive enhancement.
+    object-fit: cover;
+}
+
+.chat-text-me{
+    height: auto;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(141, 223, 141);
+    max-width: 45vh;
+}
+
+.chat-text-you{
+    height: auto;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(239, 239, 239);
+    max-width: 45vh;
+}
+
+.message-me{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.message-you{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.mat-toolbar-header{
+    position: sticky;
+    top: 0;
+    padding: unset;
+    height: 50px;
+    background-color: white;
+    border-bottom: 1px solid rgb(228, 228, 228);
+}
+
+.mat-toolbar-footer{
+    position: sticky;
+    bottom: 0;
+    padding: unset;
+    background-color: white;
+    height: auto;
+}

@@ -1,0 +1,25 @@
+<div fxLayout="column wrap" class="contact-info">
+    <div fxLayout="row wrap">
+        <div fxFlex="50" fxLayoutAlign="end stretch" style="padding-right: 5px;">
+            <button mat-icon-button [matMenuTriggerFor]="menu" style="color: rgb(192, 192, 192);">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>item1</button>
+                <button mat-menu-item>item2</button>
+            </mat-menu>
+        </div>
+        <div fxFlex="100" fxLayoutAlign="center stretch" class="contact-image">
+            <div mat-card-avatar class="avatar-header" style="background-image: url('{{model.image}}');"></div>
+        </div>
+        <div fxFlex="100" fxLayoutAlign="center stretch" class="contact-name">
+            {{model.name}}
+        </div>
+        <div fxFlex="100" fxLayoutAlign="center stretch" class="contact-btn-add-tags">
+            <button mat-button style="font-size: medium;">
+                <mat-icon style="font-size: 22px;">add</mat-icon>
+                Add tags
+            </button>
+        </div>
+    </div>
+</div>
