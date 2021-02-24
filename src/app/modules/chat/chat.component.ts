@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { exit } from 'process';
 import { ChatService } from './chat.service';
 
 @Component({
@@ -17,13 +18,24 @@ export class ChatComponent implements OnInit {
     image: 'https://sites.google.com/site/doremxn12345/_/rsrc/1488854511791/pra-wati-do-re-mxn/gVCQ-gOH.jpeg',
     name: 'โดเรม่อน'
   }
+  contactImage = 'https://www.beartai.com/wp-content/uploads/2017/06/fwdder_3_1438921392-600x352.jpeg'
   send = '';
   constructor(
     public chatService: ChatService
   ) { }
 
   ngOnInit(): void {
-    // console.log(this.chatService.onDataChangedObservable$);
+    this.chatService.getServerEventSource('http://localhost:3001/events')
+      .subscribe((chat) => {
+        let chats = JSON.parse(chat.data);
+        if (chats.length > 0) {
+          chats.forEach(ch => {
+            this.chatService.contactlist[0].contactChats.push(ch);
+          });
+        } else {
+          this.chatService.contactlist[0].contactChats.push(chats);
+        }
+      });
   }
 
   toggleDrawerLeft(ev): void {
@@ -31,13 +43,13 @@ export class ChatComponent implements OnInit {
     this.drawerCheck = ev;
   }
 
-  toggleDrawerRight(ev){
+  toggleDrawerRight(ev) {
     this.drawer.toggle();
     this.drawerCheck = ev;
   }
 
   openChat(ev) {
-    if (ev[0]?.message) {
+    if (ev.lenght !== 0) {
       this.checkChat = false;
       this.chatData = ev;
     } else {
@@ -47,5 +59,25 @@ export class ChatComponent implements OnInit {
 
   goBack() {
 
+  }
+
+  sendMessage() {
+    let body;
+    this.chatData.forEach(chat => {
+      if (chat.messaging) {
+        body = {
+          messaging_type: "RESPONSE",
+          recipient: {
+            id: chat?.messaging[0].sender.id
+          },
+          message: {
+            text: this.send
+          }
+        }
+      }
+    })
+    this.chatService.sendMessage(body).subscribe((res) => {
+      this.send = '';
+    })
   }
 }

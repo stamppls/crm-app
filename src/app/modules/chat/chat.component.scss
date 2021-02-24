@@ -13,7 +13,7 @@
   
     .content-panel {
       overflow: auto;
-      max-height: 83.5vh;
+      height: 89.5vh;
       width: auto;
       background-color:  white;
     }
@@ -50,15 +50,10 @@
 }
 
 .send-message{
-    border-top: 1px solid rgb(228, 228, 228);
+    // border-top: 1px solid rgb(228, 228, 228);
     height: 35px;
     width: 100%;
     font-size: 15px;
-}
-
-.input-message{
-    height: 100%;
-    width: 100%;
 }
 
 .panel-right-note{
@@ -66,7 +61,6 @@
     border-bottom: 1px solid rgb(228, 228, 228);
     max-height: 400px;
     height: auto;
-
 }
 
 .avatar-chat {
@@ -121,8 +115,23 @@
 
 .mat-toolbar-footer{
     position: sticky;
-    bottom: 0;
-    padding: unset;
+    bottom: 0 !important;
     background-color: white;
-    height: auto;
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    textarea{
+        height: 49px;
+        background-color: white;
+        border: unset;
+        padding-top: 5px;
+        padding-left: 5px;
+    }
+    button{
+        height: 50px;
+        background-color: white;
+        mat-icon{
+            color: gray;
+        }
+    }
 }

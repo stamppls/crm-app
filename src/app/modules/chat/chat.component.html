@@ -49,27 +49,32 @@
         <div fxLayoutAlign="center stretch" class="image-no-message" *ngIf="checkChat">
             <img class="image-no-message" src="../../../assets/images/logo/54856ab427f28a0b40b1a305792a3b00.png">
         </div>
-        <div *ngIf="!checkChat">
+        <div fxFill *ngIf="!checkChat">
             <div fxLayout="column" *ngFor="let chat of chatData">
-                <div fxLayout="row wrap" class="message-you" *ngIf="chat.contactName !== user.name">
-                    <div mat-card-avatar class="avatar-chat" style="background-image: url('{{chat.contactImage}}');">
+                <div fxLayout="row wrap" class="message-you" *ngIf="!chat.messaging_type">
+                    <div mat-card-avatar class="avatar-chat" style="background-image: url('{{contactImage}}');">
                     </div>
                     <div fxLayoutAlign="start center" class="chat-text-you">
-                        {{chat.message}}
+                        {{chat?.messaging[0].message.text}}
                     </div>
                 </div>
-                <div fxLayout="row wrap" class="message-me" fxLayoutAlign="end stretch"
-                    *ngIf="chat.contactName == user.name">
+                <div fxLayout="row wrap" class="message-me" fxLayoutAlign="end stretch" *ngIf="chat?.messaging_type">
                     <div fxLayoutAlign="start center" class="chat-text-me">
-                        {{chat.message}}
+                        {{chat?.message.text}}
                     </div>
                 </div>
             </div>
         </div>
         <footer class="mat-toolbar-footer">
-            <div fxLayoutAlign="center end" class="send-message">
-                <input class="input-message" matInput placeholder="Enter Your Message..." style="padding-left:10px;"
-                    [(ngModel)]="send">
+            <div fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="start center" style="width: auto !important;" fxFlex>
+                    <textarea matInput placeholder="Enter your message here..." [(ngModel)]="send"
+                        (keyup.enter)="sendMessage()" fxFlex>
+                    </textarea>
+                    <button mat-flat-button style="cursor: pointer;" (click)="sendMessage()">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </div>
             </div>
         </footer>
     </mat-drawer-content>
@@ -79,7 +84,8 @@
             <div fxLayout="row wrap" fxFlex="1 0 auto">
                 <div fxLayoutAlign="start stretch" fxFlex="50">
                     <div fxLayoutAlign="center stretch">
-                        <button mat-icon-button style="padding: unset;color: rgb(192, 192, 192)" (click)="toggleDrawerRight(true)">
+                        <button mat-icon-button style="padding: unset;color: rgb(192, 192, 192)"
+                            (click)="toggleDrawerRight(true)">
                             <mat-icon>skip_next</mat-icon>
                         </button>
                     </div>
