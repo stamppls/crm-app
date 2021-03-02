@@ -1,20 +1,22 @@
 <div fxLayout="column wrap" fxFlex="1 0 auto">
-    <button mat-button *ngFor="let contact of model" (click)="openChat(contact)" class="contact-list">
+    <button mat-button *ngFor="let contact of model" (click)="openChat(contact.id)" class="contact-list">
         <div fxLayout="column wrap">
-            <div fxLayoutAlign="end stretch" class="contact-message">yesterday</div>
+            <div fxLayoutAlign="end stretch" class="contact-message">{{contact.updated_time | date: 'short'}}</div>
             <div fxLayout="row wrap" fxFlex="1 0 auto">
-                <div fxLayoutAlign="start center" fxFlex="25">
-                    <div mat-card-avatar class="avatar-header"
-                        style="background-image: url('{{contact.contactImage}}');"></div>
+                <div fxLayoutAlign="start center" *ngIf="contact.contactImage">
+                    <div mat-card-avatar class="avatar-header" style="background-image: url('{{contact.contactImage}}');"></div>
                 </div>
-                <div fxLayout="column wrap" fxFlex="75">
+                <div fxLayoutAlign="start center" *ngIf="!contact.contactImage">
+                    <img mat-card-avatar class="avatar-header" src="../../../../assets/images/default-user-image.png">
+                </div>
+                <div fxLayout="column wrap" style="padding-left: 5px;">
                     <div class="contact-name" fxLayoutAlign="start end">
                         <strong>
-                            {{contact.contactName}}
+                            {{contact.senders.data[0].name}}
                         </strong>
                     </div>
                     <div class="contact-message" fxLayoutAlign="start end">
-                        {{contact.contactChats[0]?.message}}
+                        {{contact.snippet}}
                     </div>
                 </div>
             </div>

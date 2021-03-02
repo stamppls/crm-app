@@ -15,11 +15,11 @@ export class ContactListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log(this.model);
+    console.log(this.model);
   }
 
   openChat(body) {
-    this.chat.emit(body.contactChats);
+    this.chat.emit(body);
   }
 
 }

@@ -81,7 +81,10 @@ export class ChatService implements Resolve<any> {
 
 
   getContactList() {
-    this.onDataChanged$.next(this.contactlist);
+    this.http.get('http://localhost:3001/snippedmessager').subscribe((res: any) => {
+      this.onDataChanged$.next(res.data);
+      // console.log(res.data);
+    })
   }
 
   sendMessage(body): Observable<any> {

@@ -8,6 +8,7 @@ import { CamelCaseToDashPipe } from './camelCaseToDash.pipe';
 import { ShotNamePipe } from './shot-name.pipe';
 import { TitleURLPipe } from './titleUrl.pipe';
 import { OrderByPipe } from './orderBy.pipe';
+import { ReversePipe } from './reverse.pipe';
 @NgModule({
     declarations: [
         KeysPipe,
@@ -17,7 +18,8 @@ import { OrderByPipe } from './orderBy.pipe';
         CamelCaseToDashPipe,
         ShotNamePipe,
         TitleURLPipe,
-        OrderByPipe
+        OrderByPipe,
+        ReversePipe
     ],
     imports: [],
     exports: [
@@ -28,7 +30,8 @@ import { OrderByPipe } from './orderBy.pipe';
         CamelCaseToDashPipe,
         ShotNamePipe,
         TitleURLPipe,
-        OrderByPipe
+        OrderByPipe,
+        ReversePipe
     ]
 })
 export class PipesModule {

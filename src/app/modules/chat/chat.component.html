@@ -50,24 +50,25 @@
             <img class="image-no-message" src="../../../assets/images/logo/54856ab427f28a0b40b1a305792a3b00.png">
         </div>
         <div fxFill *ngIf="!checkChat">
-            <div fxLayout="column" *ngFor="let chat of chatData">
-                <div fxLayout="row wrap" class="message-you" *ngIf="!chat.messaging_type">
-                    <div mat-card-avatar class="avatar-chat" style="background-image: url('{{contactImage}}');">
-                    </div>
+            <div fxLayout="column" *ngFor="let chat of chatData | reverse">
+                <div fxLayout=" row wrap" class="message-you" *ngIf="chat.from.id !== pageID">
+                    <!-- <div *ngIf="contactImage" mat-card-avatar class="avatar-chat" style="background-image: url('{{contactImage}}');">
+                    </div> -->
+                    <img *ngIf="contactImage" mat-card-avatar class="avatar-chat" src="../../../../assets/images/default-user-image.png">
                     <div fxLayoutAlign="start center" class="chat-text-you">
-                        {{chat?.messaging[0].message.text}}
+                        {{chat?.message}}
                     </div>
                 </div>
-                <div fxLayout="row wrap" class="message-me" fxLayoutAlign="end stretch" *ngIf="chat?.messaging_type">
+                <div fxLayout="row wrap" class="message-me" fxLayoutAlign="end stretch" *ngIf="chat.from.id === pageID">
                     <div fxLayoutAlign="start center" class="chat-text-me">
-                        {{chat?.message.text}}
+                        {{chat?.message}}
                     </div>
                 </div>
             </div>
         </div>
         <footer class="mat-toolbar-footer">
             <div fxLayout="column">
-                <div fxLayout="row" fxLayoutAlign="start center" style="width: auto !important;" fxFlex>
+                <div fxLayout="row" fxLayoutAlign="start center" style="width: 100% !important;" fxFlex>
                     <textarea matInput placeholder="Enter your message here..." [(ngModel)]="send"
                         (keyup.enter)="sendMessage()" fxFlex>
                     </textarea>

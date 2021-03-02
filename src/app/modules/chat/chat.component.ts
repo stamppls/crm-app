@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { exit } from 'process';
 import { ChatService } from './chat.service';
 
 @Component({
@@ -20,6 +19,7 @@ export class ChatComponent implements OnInit {
   }
   contactImage = 'https://www.beartai.com/wp-content/uploads/2017/06/fwdder_3_1438921392-600x352.jpeg'
   send = '';
+  pageID = "116717617016969";
   constructor(
     public chatService: ChatService
   ) { }
@@ -49,12 +49,13 @@ export class ChatComponent implements OnInit {
   }
 
   openChat(ev) {
-    if (ev.lenght !== 0) {
-      this.checkChat = false;
-      this.chatData = ev;
-    } else {
-      this.checkChat = true;
-    }
+    console.log(ev);
+    // if (ev.lenght !== 0) {
+    //   this.checkChat = false;
+    //   this.chatData = ev;
+    // } else {
+    //   this.checkChat = true;
+    // }
   }
 
   goBack() {
@@ -64,11 +65,12 @@ export class ChatComponent implements OnInit {
   sendMessage() {
     let body;
     this.chatData.forEach(chat => {
-      if (chat.messaging) {
+      if (chat.from.id !== this.pageID) {
+        console.log(chat.from.id)
         body = {
           messaging_type: "RESPONSE",
           recipient: {
-            id: chat?.messaging[0].sender.id
+            id: chat.from.id
           },
           message: {
             text: this.send
@@ -78,6 +80,7 @@ export class ChatComponent implements OnInit {
     })
     this.chatService.sendMessage(body).subscribe((res) => {
       this.send = '';
+      console.log(res);
     })
   }
 }
